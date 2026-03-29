@@ -1,26 +1,224 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Leotaro";
+  src: url("/fonts/Leotaro-Free.otf") format("opentype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PPPangramSansRounded";
+  src: url("/fonts/PPPangramSansRounded-Light.otf") format("opentype");
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PPPangramSansRounded";
+  src: url("/fonts/PPPangramSansRounded-Medium.otf") format("opentype");
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PPPangramSansRounded";
+  src: url("/fonts/PPPangramSansRounded-Semibold.otf") format("opentype");
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PPPangramSansRounded";
+  src: url("/fonts/PPPangramSansRounded-Bold.otf") format("opentype");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #171311;
+  --foreground: #f5efe8;
+  --muted: rgba(255, 255, 255, 0.65);
+  --card: rgba(255, 255, 255, 0.06);
+  --border: rgba(255, 255, 255, 0.12);
+  --font-heading: "Leotaro", Georgia, "Times New Roman", serif;
+  --font-body: "PPPangramSansRounded", "Trebuchet MS", "Segoe UI", sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
+  margin: 0;
+  background:
+    radial-gradient(circle at top, rgba(255,255,255,0.06), transparent 35%),
+    linear-gradient(180deg, #1d1816 0%, #171311 100%);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.container-main {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.glass-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(10px);
+}
+
+.section-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+h1,
+h2,
+h3,
+.countdown-title {
+  font-family: var(--font-heading);
+}
+
+.section-text {
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.input-ui {
+  width: 100%;
+  border-radius: 18px;
+  border: 1px solid var(--border);
+  background: rgba(0, 0, 0, 0.18);
+  color: white;
+  padding: 16px 18px;
+  outline: none;
+}
+
+.input-ui::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.btn-primary {
+  border: none;
+  border-radius: 999px;
+  padding: 14px 26px;
+  background: white;
+  color: #1a1716;
+  cursor: pointer;
+  font-weight: 600;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+}
+
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 12px 18px;
+  background: transparent;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.choice-active {
+  background: white;
+  color: #171311;
+}
+
+.countdown-panel {
+  border-radius: 0;
+  padding: 40px 24px;
+}
+
+.countdown-title {
+  margin: 0;
+  text-align: center;
+  color: #fff;
+  font-family: var(--font-heading);
+  font-size: clamp(2.05rem, 5.2vw, 3.35rem);
+  font-weight: 500;
+  line-height: 1.15;
+}
+
+.countdown-inner {
+  margin: 36px auto 0;
+  max-width: 760px;
+}
+
+.countdown-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.countdown-cell {
+  text-align: center;
+  padding: 20px 10px;
+}
+
+.countdown-cell-mobile-top {
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.countdown-value {
+  color: #fff;
+  font-size: clamp(2.7rem, 6vw, 4.15rem);
+  line-height: 1;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+}
+
+.countdown-label {
+  margin-top: 8px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: clamp(1rem, 2.2vw, 1.65rem);
+  line-height: 1.2;
+}
+
+@media (min-width: 768px) {
+  .countdown-panel {
+    padding: 56px 48px;
+  }
+
+  .countdown-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .countdown-cell {
+    padding: 8px 24px;
+  }
+
+  .countdown-cell + .countdown-cell {
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .countdown-cell-mobile-top {
+    border-top: 0;
+  }
 }
