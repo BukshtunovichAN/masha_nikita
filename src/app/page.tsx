@@ -6,7 +6,7 @@ import Image from "next/image";
 type Attendance = "yes" | "no";
 type PlusOne = "yes" | "no";
 
-const EVENT_DATE_ISO = "2026-08-15T16:00:00";
+const EVENT_DATE_ISO = "2026-06-27T15:30:00";
 const PHOTO_SHARE_URL = "https://t.me/+fUcrOMkQtJphNzUy";
 const HOST_INSTAGRAM_URL =
   "https://www.instagram.com/dimas_showman?igsh=d24xOXIxcXFrbG02";
